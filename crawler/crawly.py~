@@ -16,7 +16,7 @@ client = oauth.Client(consumer)
 
 # The OAuth Client request works just like httplib2 for the most part.
 with open("github.users.out",'w') as f:
-	for i in range(0,200):
+	for i in range(0,2):
 		resp, content = client.request("https://api.github.com/search/users?q=language:java&per_page=100&page="+str(i), "GET", headers=headers)
 		json_data = json.loads(content)
 
