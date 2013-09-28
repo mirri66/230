@@ -3,19 +3,63 @@ body{
   margin:0;
 }
 .header{
-  font-family:'arial';
-  background-color:#fffa00;
+  font-family:'Raleway', sans-serif;;
+  background-color:#53055C;
+  color: #ffffff;
   width:100%;
   margin-left: auto;
   margin-right: auto;
   padding:1em;
 }
 .label{
-  font-size: 1.2em;
-  font-family: 'arial';
+  font-family: 'Raleway', sans-serif;;
+  color: white;
+  font-size: 1.5em;
 }
-
+.desc{
+  color:white;
+  font-size:1em;
+  font-family:'Raleway', sans-serif;;
+}
 #search{
   padding: 1em;
+  width: 80%;
 }
-
+#main{
+  background-image: url("../images/bg.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 1200px;
+  padding: 5em;
+}
+#bg {
+  position: fixed; 
+  top: -50%; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%;
+  z-index: -1;
+}
+#bg img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 50%;
+  min-height: 50%;
+}
+#footer{
+  color: white;
+  font-family: 'Raleway', sans-serif;;
+  position: absolute;
+  bottom: 5;
+  right:5;
+}
+a{
+  color: white;
+  text-decoration: none;
+}
