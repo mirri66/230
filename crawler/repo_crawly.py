@@ -1,0 +1,30 @@
+import re
+import urllib2
+import oauth2 as oauth
+import json
+
+headers = {}
+headers["Accept"] = "application/vnd.github.preview"
+url = "https://api.github.com/search/users?q=language:java&"
+#request = urllib2.Request(url, headers=headers)
+#response = urllib2.urlopen(request)
+#results = response.read()
+
+# Create our client.
+consumer = oauth.Consumer(key="CS230", secret="dd56bed24c7c939a1948126c47867eead29a1e56")
+client = oauth.Client(consumer)
+
+with open("github.users.out",'r') as infile:
+	with open("github.user.to.repo.map",'w') as mapfile:
+		json_data = json.loads(infile.read())
+		for user in json_data:
+			name = user["login"]
+			resp, content = client.request("https://api.github.com/users/"+name+"/repos", "GET", headers=headers)
+			repos = json.loads(content)			
+			for repo in repos:
+				print "user="+name
+				print "repo="+repo
+				url = repo["clone_url"]
+				mapfile.write(name + "\t" + url + "\n")
+
+
