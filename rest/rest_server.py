@@ -17,6 +17,8 @@ tags = { 'android' : [ 'android', 'com.android' ],
 app = Flask(__name__)
 api = restful.Api(app)
 
+headers = {"Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "GET, POST"}
+
 def getUserResultsForTags(tags):
 	for user in getUsersByScore(tags):
 		score = getUserScore(tags, user)
@@ -32,13 +34,13 @@ class RestServer(restful.Resource):
 	args = parser.parse_args()
 	tag_str = args['tags']
 	tags = tag_str.split(',')
-	return list(getUserResultsForTags(tags))
+	return list(getUserResultsForTags(tags)), 200, headers
 	    
 api.add_resource(RestServer, '/')
 
 class GetTags(restful.Resource):
 	def get(self):
-		return tags.keys()
+		return tags.keys(), 200, headers
 
 api.add_resource(GetTags, '/tags')
 

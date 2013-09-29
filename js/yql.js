@@ -20,7 +20,7 @@ function search_results(json2){
   $('#results').css("display","none");
 
   // for each hit, append a section
-  var json2 = window.fakejson;
+  //var json2 = window.fakejson;
   for (var i=0; i<json2.length; i++){
    $('<div/>', {
        class: 'res',
