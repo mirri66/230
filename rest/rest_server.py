@@ -7,7 +7,7 @@ with open('github.users.out') as f:
 	users = json.loads(f.read())
 
 data = { 'JakeWharton' : [ 'android.x', 'android.y', 'java' ],
-         'pahimar' : [ 'java.x', 'java.android' ],
+         'pahimar' : [ 'java.x', 'com.android' ],
 	 'kohsuke' : ['android.c'] } 
 
 tags = { 'android' : [ 'android', 'com.android' ],
@@ -16,6 +16,14 @@ tags = { 'android' : [ 'android', 'com.android' ],
 app = Flask(__name__)
 api = restful.Api(app)
 
+def getUserResultsForTags(tags):
+	for user in getUsersByScore(tags):
+		score = getUserScore(tags, user)
+		if score > 0:
+			resultUser = getUserInfo(user).copy()
+			resultUser['score'] = score
+			yield resultUser
+
 class RestServer(restful.Resource):
     def get(self):
     	parser = reqparse.RequestParser()
@@ -23,7 +31,7 @@ class RestServer(restful.Resource):
 	args = parser.parse_args()
 	tag_str = args['tags']
 	tags = tag_str.split(',')
-        return map(lambda u: getUserInfo(u), getUsersByScore(tags))
+	return list(getUserResultsForTags(tags))
 	    
 api.add_resource(RestServer, '/')
 
