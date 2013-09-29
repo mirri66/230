@@ -6,9 +6,8 @@ import json
 with open('github.users.extra.out') as f:
 	users = json.loads(f.read())
 
-data = { 'JakeWharton' : [ 'android.x', 'android.y', 'java' ],
-         'pahimar' : [ 'java.x', 'com.android' ],
-	 'kohsuke' : ['android.c'] } 
+with open('imports.data') as f:
+	data = json.loads(f.read())
 
 tags = { 'android' : [ 'android', 'com.android' ],
          'java' : ['java', 'javax', 'com.sun', 'sun'] }
