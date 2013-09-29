@@ -1,52 +1,10 @@
-// YQL serves JSONP (with a callback) so all we have to do
-// is create a script element with the right 'src':
-/*
-function YQLQuery(query, callback) {
-    this.query = query;
-    this.callback = callback || function(){};
-    this.fetch = function() {
- 
-        if (!this.query || !this.callback) {
-            throw new Error('YQLQuery.fetch(): Parameters may be undefined');
-        }
- 
-        var scriptEl = document.createElement('script'),
-            uid = 'yql' + +new Date(),
-            encodedQuery = encodeURIComponent(this.query.toLowerCase()),
-            instance = this;
- 
-        YQLQuery[uid] = function(json) {
-            instance.callback(json);
-            delete YQLQuery[uid];
-            document.body.removeChild(scriptEl);
-        };
- 
-        scriptEl.src = 'http://query.yahooapis.com/v1/public/yql?q='
-                     + encodedQuery + '&format=json&callback=YQLQuery.' + uid; 
-        document.body.appendChild(scriptEl);
- 
-    };
-}
-
-function submit(event) {
-	search(event.value);
-}
-
-function search(tags){
-    var query = 'USE "http://myserver.com/mytables.xml" AS performance; SELECT * FROM performance WHERE tags="' + tags + '"';
-    YQLQuery(query, function processResults(data) {
-      var users = data.query.results;
-      
-    });
-}
-*/
 
 function expand(btn){
-  var currTable = btn.parentNode.parentNode.parentNode.parentNode;
-  var contact = currTable.rows;
-  var contactdiv = currTable.querySelector("#contact");
-//  alert(contactdiv.innerHTML);
-  contactdiv.style.color='black';
+  var currDiv = btn.parentNode.parentNode.parentNode.parentNode.parentNode;
+  var contact = currDiv.rows;
+  $('#contact'+currDiv.id).fadeIn(200);
+//  contactdiv.style.display='inline';
+
 }
 
 function search2(form){
@@ -70,21 +28,43 @@ function search2(form){
    var cellimg = document.createElement("td");    
    cellimg.innerHTML='<img src="'+ json2[i].avatar_url +'">';
    var cellname = document.createElement("td");    
+   cellname.setAttribute("width","45%");
    var cellnrow1 = document.createElement("tr");    
-   cellnrow1.innerHTML='<p class="namelabel">'+json2[i].login +'</p>';
+   if (json2[i].full_name == undefined){
+     cellnrow1.innerHTML='<p class="namelabel">'+json2[i].login +'</p>';
+   }else{
+     cellnrow1.innerHTML='<p class="namelabel">'+json2[i].full_name +'</p>';
+   }
    cellname.appendChild(cellnrow1);
    var cellnrow2 = document.createElement("tr");    
    cellnrow2.innerHTML='<p>Score: '+json2[i].score +'</p>';
    cellname.appendChild(cellnrow2);
-   var cellnrow3 = document.createElement("tr");    
-   cellnrow3.innerHTML='<button onclick="expand(this)">Contact</button>';
-   cellname.appendChild(cellnrow3);
+
+   if (json2[i].languages!=undefined){
+     var cellnrow2a = document.createElement("tr");    
+     cellnrow2a.innerHTML='<p>Languages: '+json2[i].languages +'</p>';
+     cellname.appendChild(cellnrow2a);
+   }
+ //  var cellnrow3 = document.createElement("tr");    
+ //  cellnrow3.innerHTML='<button onclick="expand(this)">Contact</button>';
+ //  cellname.appendChild(cellnrow3);
    row.appendChild(cellimg);
    row.appendChild(cellname);
    tb.appendChild(row);          
    var contactrow = document.createElement("td");
-   contactrow.setAttribute("id","contact");
-   contactrow.innerHTML='<a href="'+json2[i].html_url+'">'+json2[i].login+'\'s github page</a>';
+   contactrow.setAttribute("id",'contactuser'+i);
+   contactrow.setAttribute("width","50%");
+   var contactinfo='<img src=\'images/octocat.png\' width="30px"><a class="rescontact" href="'+json2[i].html_url+'">'+json2[i].login+'\'s github page</a><br>';
+   if (json2[i].email !=undefined){
+     contactinfo += '<br><img src="images/email.png" width="25px">'+ json2[i].email;
+   }
+//   contactrow.innerHTML='<a class="rescontact" href="'+json2[i].html_url+'">'+json2[i].login+'\'s github page</a><br>';
+   contactrow.innerHTML=contactinfo;
+   contactrow.style.color='black';
+//   contactrow.style.display='none';
+   var buffercol = document.createElement("td");
+   buffercol.innerHTML='<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>';
+   row.appendChild(buffercol);          
    row.appendChild(contactrow);          
    curr.appendChild(tb);
   }

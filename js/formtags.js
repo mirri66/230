@@ -5,7 +5,7 @@ $(document).ready(function() {
       singleField: true,
       singleFieldNode: $('#skills'),
       caseSensitive: false,
-      availableTags: ['android', 'java'],
+      availableTags: ['android', 'java','android.graphics','android.music'],
       allowSpaces: true,
     });
 });

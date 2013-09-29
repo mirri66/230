@@ -20,10 +20,11 @@ body{
 }
 #desc{
   color:white;
-  font-size:16px;
+  font-size:1.1em;
   font-family:'Raleway', sans-serif;;
   padding: 1em;
   margin-left: -1em;
+  height:5em;
   }
   .dark {
    text-shadow: black 2px 2px 2px;
@@ -85,4 +86,7 @@ a{
 .namelabel{
   font-size:1.2em;
 
+}
+.rescontact{
+  color: black;
 }

@@ -10,7 +10,9 @@ with open('imports.data') as f:
 	data = json.loads(f.read())
 
 tags = { 'android' : [ 'android', 'com.android' ],
-         'java' : ['java', 'javax', 'com.sun', 'sun'] }
+         'java' : ['java', 'javax', 'com.sun', 'sun'],
+         'android.graphics' : ['android.graphics'],
+       }
 
 app = Flask(__name__)
 api = restful.Api(app)
