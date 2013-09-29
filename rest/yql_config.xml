@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<table xmlns="http://query.yahooapis.com/v1/schema/table.xsd">
+  <meta>
+    <author>Benjamin Prosnitz, Lazaro Clapp, Grace Tang</author>
+    <documentationURL></documentationURL>
+    <sampleQuery>select * from {table} where tags = "android,java"</sampleQuery>
+  </meta>
+  <bindings>
+    <select itemPath="json.responseData.results" produces="JSON">
+      <urls>
+        <url>URLHEREURLHERE</url>
+      </urls>
+      <inputs>
+        <key id='tags' type='xs:string' paramType='query' required='true' />
+      </inputs>
+    </select>
+  </bindings>
+</table>
