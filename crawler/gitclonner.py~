@@ -1,0 +1,8 @@
+from subprocess import check_call
+
+with open("github.user.to.repo.map",'r') as f:
+	for line in f:
+		line = line.strip()
+		user, repo = line.split("\t")
+		print repo
+		check_call(["git", "clone", repo])
