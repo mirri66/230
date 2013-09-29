@@ -3,7 +3,7 @@ from flask.ext import restful
 from flask.ext.restful import reqparse
 import json
 
-with open('github.users.out') as f:
+with open('github.users.extra.out') as f:
 	users = json.loads(f.read())
 
 data = { 'JakeWharton' : [ 'android.x', 'android.y', 'java' ],
