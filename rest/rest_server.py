@@ -1,10 +1,14 @@
 from flask import Flask
 from flask.ext import restful
 from flask.ext.restful import reqparse
+import json
 
-data = { 'lazaro' : [ 'android.x', 'android.y', 'java' ],
-         'benj' : [ 'java.x', 'java.android' ],
-	 'grace' : ['android.c'] } 
+with open('github.users.out') as f:
+	users = json.loads(f.read())
+
+data = { 'JakeWharton' : [ 'android.x', 'android.y', 'java' ],
+         'pahimar' : [ 'java.x', 'java.android' ],
+	 'kohsuke' : ['android.c'] } 
 
 tags = { 'android' : [ 'android', 'com.android' ],
          'java' : ['java', 'javax', 'com.sun', 'sun'] }
@@ -19,7 +23,7 @@ class RestServer(restful.Resource):
 	args = parser.parse_args()
 	tag_str = args['tags']
 	tags = tag_str.split(',')
-        return getUsersByScore(tags) 
+        return map(lambda u: getUserInfo(u), getUsersByScore(tags))
 	    
 api.add_resource(RestServer, '/')
 
@@ -40,6 +44,12 @@ def getUserScore(specifiedTags, user):
 
 def getUsersByScore(tags):
 	return sorted(data, key=lambda u: -getUserScore(tags, u))
+
+def getUserInfo(username):
+	for user in users:
+		if user['login'] == username:
+			return user
+	raise Exception('User: %s not found' % username)
 
 if __name__ == '__main__':
 	app.run(debug=True)
