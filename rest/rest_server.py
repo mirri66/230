@@ -1,5 +1,6 @@
 from flask import Flask
 from flask.ext import restful
+from flask.ext.restful import reqparse
 
 data = { 'lazaro' : [ 'android.x', 'android.y', 'java' ],
          'benj' : [ 'java.x', 'java.android' ],
@@ -13,9 +14,20 @@ api = restful.Api(app)
 
 class RestServer(restful.Resource):
     def get(self):
-            return getUsersByScore(['android']) 
+    	parser = reqparse.RequestParser()
+	parser.add_argument('tags', type=str, dest='tags', required=True)
+	args = parser.parse_args()
+	tag_str = args['tags']
+	tags = tag_str.split(',')
+        return getUsersByScore(tags) 
 	    
 api.add_resource(RestServer, '/')
+
+class GetTags(restful.Resource):
+	def get(self):
+		return tags.keys()
+
+api.add_resource(GetTags, '/tags')
 
 def getUserScore(specifiedTags, user):
 	score = 0
