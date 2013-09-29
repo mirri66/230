@@ -41,24 +41,55 @@ function search(tags){
 }
 */
 
+function expand(btn){
+  var currTable = btn.parentNode.parentNode.parentNode.parentNode;
+  var contact = currTable.rows;
+  var contactdiv = currTable.querySelector("#contact");
+//  alert(contactdiv.innerHTML);
+  contactdiv.style.color='black';
+}
 
 function search2(form){
   var tags = form.tags;
   $('#desc').hide();
   $('#desc').attr('height','0px');
   
+  $('#results').html('');
+  $('#results').css("display","none");
+
   // for each hit, append a section
   var json2 = window.fakejson;
   for (var i=0; i<json2.length; i++){
    $('<div/>', {
        class: 'res',
        id: 'user'+i,
-       href: json2[i].html_url,
-       rel: 'external',
-       text: json2[i].login,
    }).appendTo('#results');
    var curr = document.getElementById('user'+i);
+   var tb = document.createElement("table");
+   var row = document.createElement("tr");
+   var cellimg = document.createElement("td");    
+   cellimg.innerHTML='<img src="'+ json2[i].avatar_url +'">';
+   var cellname = document.createElement("td");    
+   var cellnrow1 = document.createElement("tr");    
+   cellnrow1.innerHTML='<p class="namelabel">'+json2[i].login +'</p>';
+   cellname.appendChild(cellnrow1);
+   var cellnrow2 = document.createElement("tr");    
+   cellnrow2.innerHTML='<p>Score: '+json2[i].score +'</p>';
+   cellname.appendChild(cellnrow2);
+   var cellnrow3 = document.createElement("tr");    
+   cellnrow3.innerHTML='<button onclick="expand(this)">Contact</button>';
+   cellname.appendChild(cellnrow3);
+   row.appendChild(cellimg);
+   row.appendChild(cellname);
+   tb.appendChild(row);          
+   var contactrow = document.createElement("td");
+   contactrow.setAttribute("id","contact");
+   contactrow.innerHTML='<a href="'+json2[i].html_url+'">'+json2[i].login+'\'s github page</a>';
+   row.appendChild(contactrow);          
+   curr.appendChild(tb);
   }
+$('#results').fadeIn(300);
+$('#footer').css("display","none");
 return false;
 }
 
