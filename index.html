@@ -8,26 +8,34 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jsoneg.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/yql.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 <div class="header">
-<h1>Git poachin' placeholder</h1>
+<!--h1>Git poachin' placeholder</h1-->
+<img src="images/yahoo.png" width="180px">
+  <div style="float:right; margin-top: 10px; padding-right:30px;"><span>Helping you find great developers with the skills you need</span></tr>
+  </div>
 </div>
 <script src="js/formtags.js" type="text/javascript" charset="utf-8"></script>
 <div id="main">
 <div id="search">
-   <table>
-   <tr><span class="desc">Technical recruiters... here is your dream come true!!</span></tr>
-   <tr><br></tr>
-   <br><br>
-   <tr>
-   <td><span class="label">Skills&nbsp;&nbsp;</span></td>
-   <td><form>
+   <table width=100%>
+    <tr><div id="desc"><span id='slow'>On a quest to find a great developer for your project?</span> 
+          <br><br><span id='slower'>Let us help.</span>
+        </div></tr>
+    <tr><br><br><br></tr>
+    <tr><span class="label">I'm looking for developers with these skills:</span></tr>
+    <tr>
+   <!--td width="5%"><span class="label">Skills&nbsp;&nbsp;</span></td-->
+   <td width="70%" style="float:left;">
+     <form href="#results" id="searchform" onsubmit="search2(this); return false;">
        <p>
            <input name="tags" id="skills" value="" style="display:None;">
        </p>
        <ul id="myTags"></ul>
-  </td><td>     <input type="image" src="images/yahoo.jpeg" width="35px">
+  </td><td width="20%"> &nbsp;    <input id="subbtn" type="image" src="images/yahoo-icon.png" width="35px">
    </form>
    </td>
    </tr>
@@ -46,5 +54,5 @@
   <img src="images/bg.png" alt="">
 </div>
 </body>
-<script src='test.js'></script>
+<script src="js/effects.js" type="text/javascript" charset="utf-8"></script>
 </html>

@@ -4,22 +4,28 @@ body{
 }
 .header{
   font-family:'Raleway', sans-serif;;
-  background-color:#53055C;
+//  background-color:#53055C;
+  background-color:rgba(83, 5, 92, 0.95);
   color: #ffffff;
   width:100%;
   margin-left: auto;
   margin-right: auto;
-  padding:1em;
+  padding-left:1em;
+  padding-top:0.4em;
 }
 .label{
   font-family: 'Raleway', sans-serif;;
   color: white;
   font-size: 1.5em;
 }
-.desc{
+#desc{
   color:white;
   font-size:1em;
   font-family:'Raleway', sans-serif;;
+  padding: 1em;
+  background-color: rgba(5,5,5,0.5);
+  width: 20em;
+  height: 4.5em;
 }
 #search{
   padding: 1em;
@@ -62,4 +68,14 @@ body{
 a{
   color: white;
   text-decoration: none;
+}
+.res{
+  padding: 1em;
+  font-family: 'Raleway', sans-serif;;
+  width: 80%;
+  background-color: white;
+}
+.namelabel{
+  font-size:1.2em;
+
 }
