@@ -1,5 +1,6 @@
 // YQL serves JSONP (with a callback) so all we have to do
 // is create a script element with the right 'src':
+/*
 function YQLQuery(query, callback) {
     this.query = query;
     this.callback = callback || function(){};
@@ -37,4 +38,24 @@ function search(tags){
       var users = data.query.results;
       
     });
+}
+*/
+
+
+function search2(form){
+  var tags = form.tags;
+  $('#desc').hide();
+  $('#desc').attr('height','0px');
+  
+  // for each hit, append a section
+  cnt=1;
+  $('<div/>', {
+      class: 'res',
+      id: 'user'+cnt,
+      href: 'http://github.com/mirri66',
+      rel: 'external',
+      text: 'Person name'
+  }).appendTo('#results');
+  var curr = document.getElementById('user'+cnt);
+  return false;
 }
