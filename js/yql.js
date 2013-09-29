@@ -30,11 +30,13 @@ function search2(form){
    var cellname = document.createElement("td");    
    cellname.setAttribute("width","45%");
    var cellnrow1 = document.createElement("tr");    
+   var usename;
    if (json2[i].full_name == undefined){
-     cellnrow1.innerHTML='<p class="namelabel">'+json2[i].login +'</p>';
+     usename=json2[i].login;
    }else{
-     cellnrow1.innerHTML='<p class="namelabel">'+json2[i].full_name +'</p>';
+     usename=json2[i].full_name;
    }
+   cellnrow1.innerHTML='<p class="namelabel">'+usename +'</p>';
    cellname.appendChild(cellnrow1);
    var cellnrow2 = document.createElement("tr");    
    cellnrow2.innerHTML='<p>Score: '+json2[i].score +'</p>';
@@ -56,7 +58,7 @@ function search2(form){
    contactrow.setAttribute("width","50%");
    var contactinfo='<img src=\'images/octocat.png\' width="30px"><a class="rescontact" href="'+json2[i].html_url+'">'+json2[i].login+'\'s github page</a><br>';
    if (json2[i].email !=undefined){
-     contactinfo += '<br><img src="images/email.png" width="25px">'+ json2[i].email;
+     contactinfo += '<br><img src="images/email.png" width="25px"><a class="rescontact" href="mailto:test@sdfsdfmail.com">&nbsp;&nbsp;Email '+usename+' </a>';
    }
 //   contactrow.innerHTML='<a class="rescontact" href="'+json2[i].html_url+'">'+json2[i].login+'\'s github page</a><br>';
    contactrow.innerHTML=contactinfo;
