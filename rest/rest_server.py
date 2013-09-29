@@ -3,12 +3,11 @@ from flask.ext import restful
 from flask.ext.restful import reqparse
 import json
 
-with open('github.users.out') as f:
+with open('github.users.extra.out') as f:
 	users = json.loads(f.read())
 
-data = { 'JakeWharton' : [ 'android.x', 'android.y', 'java' ],
-         'pahimar' : [ 'java.x', 'com.android' ],
-	 'kohsuke' : ['android.c'] } 
+with open('imports.data') as f:
+	data = json.loads(f.read())
 
 tags = { 'android' : [ 'android', 'com.android' ],
          'java' : ['java', 'javax', 'com.sun', 'sun'] }
@@ -60,4 +59,4 @@ def getUserInfo(username):
 	raise Exception('User: %s not found' % username)
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run(debug=True,port=8080,host="0.0.0.0")
