@@ -6,9 +6,9 @@
     <sampleQuery>select * from {table} where tags = "android,java"</sampleQuery>
   </meta>
   <bindings>
-    <select itemPath="json.responseData.results" produces="JSON">
+    <select itemPath="json.users" produces="JSON">
       <urls>
-        <url>URLHEREURLHERE</url>
+        <url>http://ec2-54-214-196-171.us-west-2.compute.amazonaws.com:8081/?tags={tags}</url>
       </urls>
       <inputs>
         <key id='tags' type='xs:string' paramType='query' required='true' />
