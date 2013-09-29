@@ -7,8 +7,12 @@ function expand(btn){
 
 }
 
-function search2(form){
-  var tags = form.tags;
+function search2(form) {
+	var tags = form.tags.value;
+	fetch_users_for_tags(tags, search_results);
+}
+
+function search_results(json2){
   $('#desc').hide();
   $('#desc').attr('height','0px');
   
