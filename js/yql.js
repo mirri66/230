@@ -48,14 +48,21 @@ function search2(form){
   $('#desc').attr('height','0px');
   
   // for each hit, append a section
-  cnt=1;
-  $('<div/>', {
-      class: 'res',
-      id: 'user'+cnt,
-      href: 'http://github.com/mirri66',
-      rel: 'external',
-      text: 'Person name'
-  }).appendTo('#results');
-  var curr = document.getElementById('user'+cnt);
-  return false;
+  var json2 = window.fakejson;
+  for (var i=0; i<json2.length; i++){
+   $('<div/>', {
+       class: 'res',
+       id: 'user'+i,
+       href: json2[i].html_url,
+       rel: 'external',
+       text: json2[i].login,
+   }).appendTo('#results');
+   var curr = document.getElementById('user'+i);
+  }
+return false;
 }
+
+
+
+
+
