@@ -5,6 +5,7 @@ $(document).ready(function() {
       singleField: true,
       singleFieldNode: $('#skills'),
       caseSensitive: false,
+      availableTags: ['android', 'java'],
       allowSpaces: true,
     });
 });
